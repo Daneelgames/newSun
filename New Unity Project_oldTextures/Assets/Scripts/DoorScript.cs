@@ -5,14 +5,14 @@ public class DoorScript : MonoBehaviour {
 
 	public Transform spawnerOut;
 	public Transform spawnerIn;
+	public Transform player;
+	public CharacterManager cm;
 
-	CharacterManager cm;
-	GameObject player;
 	string whereTo = "Out";
 
 	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player");
-		cm = player.GetComponent<CharacterManager> ();
+		//player = GameObject.Find("Player");
+		//cm = player.GetComponent<CharacterManager> ();
 		
 		Renderer renderer = GetComponentInChildren<Renderer>();
 		renderer.material.shader = Shader.Find ("Toon/Lit Outline");

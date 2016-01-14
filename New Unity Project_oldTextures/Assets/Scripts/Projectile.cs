@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour {
 	{
 		rb = GetComponent<Rigidbody> ();
 		rb.velocity = transform.forward * speed;
-		Destroy (gameObject, 2.0f);
+		Destroy (gameObject, 1.0f);
 
 	}
 	
