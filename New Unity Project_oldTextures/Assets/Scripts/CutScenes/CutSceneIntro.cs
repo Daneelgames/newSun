@@ -21,11 +21,11 @@ public class CutSceneIntro : MonoBehaviour {
 	
 	IEnumerator CloseUp() {
 		yield return new WaitForSeconds(3.0f);
-		dialogue.text = "At first she is happy.";
+		dialogue.text = "You have not finished the job.";
 		yield return new WaitForSeconds(2.0f);
 		dialogue.text = "";
 		yield return new WaitForSeconds(1.0f);
-		dialogue.text = "Then the desert guzzles her.";
+		dialogue.text = "I'm coming for you.";
 		yield return new WaitForSeconds(3.0f);
 		dialogue.text = "";
 		standUpAnimator.SetBool ("StandUp", true);
