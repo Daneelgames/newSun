@@ -68,9 +68,17 @@ public class CharacterManager : MonoBehaviour {
 			{
 				StartCoroutine(Attack());
 			}
+			if (Input.GetKey("w")){
+				playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * 90f, Space.Self);
+			} else if (Input.GetKey("s")) {
+				playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * -90f, Space.Self);
+			}
+
 		} else {
 			animator.SetBool ("Aiming", false);
 			aiming = false;
+			//set gun's Y angle
+			playersGun.transform.localEulerAngles = new Vector3(90f, 150f, 0f);
 		}
 		if (aiming == false) {
 			if (Input.GetKey("w")){
