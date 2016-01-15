@@ -5,7 +5,7 @@ using System.Collections;
 
 public class LaserScript : MonoBehaviour {
 	private LineRenderer lr;
-	private int SolidMask = 8;
+
 	// Use this for initialization
 	void Start () {
 		lr = GetComponent<LineRenderer> ();
@@ -13,16 +13,18 @@ public class LaserScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		int solidMask = 1 << 8;
 		RaycastHit hit;
 
-		if (Physics.Raycast (transform.position, transform.forward, out hit, SolidMask)) {
+		if (Physics.Raycast (transform.position, transform.forward, out hit, solidMask)) {
 			if (hit.collider) {
-				lr.SetPosition (1, new Vector3 (hit.distance, 0, 0));
+				lr.SetPosition (1, new Vector3 (0, 0, hit.distance));
+				print (hit.collider.gameObject.name);
 			}
 		}
 		else 
 		{
-			lr.SetPosition(1, new Vector3(100,0,0));
+			lr.SetPosition(1, new Vector3(0,0,100));
 		}
 	}
 }
