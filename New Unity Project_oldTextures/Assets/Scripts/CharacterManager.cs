@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject shot;
 	public GameObject projectile;
 	public Transform shotHolder;
+	public GameObject laserLine;
 	public GameObject playersGun;
 
 	float torgueValue = 5;
@@ -62,6 +63,7 @@ public class CharacterManager : MonoBehaviour {
 			animator.SetBool ("Turn", false);
 			animator.SetBool ("Aiming", true);
 			aiming = true;
+			laserLine.SetActive(true);
 			if (Input.GetKeyDown("return") && canShoot == true)
 			{
 				StartCoroutine(Attack());
@@ -82,6 +84,7 @@ public class CharacterManager : MonoBehaviour {
 			{
 				torgueValue = 5;
 			}
+			laserLine.SetActive(false);
 		}
 		
 		if (Input.GetKey("a")){
