@@ -58,6 +58,7 @@ public class CharacterManager : MonoBehaviour {
 			}
 		}
 		if (Input.GetKey ("right shift") && playersGun.activeInHierarchy) {
+			print (playersGun.transform.rotation.eulerAngles.z);
 			animator.SetBool ("Walk", false);
 			animator.SetBool ("Back", false);
 			animator.SetBool ("Turn", false);
@@ -69,16 +70,22 @@ public class CharacterManager : MonoBehaviour {
 				StartCoroutine(Attack());
 			}
 			if (Input.GetKey("w")){
-				playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * 90f, Space.Self);
+				if (playersGun.transform.localEulerAngles.y>100)
+				{
+					playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * 90f, Space.Self);
+				}
 			} else if (Input.GetKey("s")) {
-				playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * -90f, Space.Self);
+				if (playersGun.transform.localEulerAngles.y<200)
+				{
+					playersGun.transform.Rotate(Vector3.forward * Time.deltaTime * -90f, Space.Self);
+				}
 			}
 
 		} else {
 			animator.SetBool ("Aiming", false);
 			aiming = false;
 			//set gun's Y angle
-			playersGun.transform.localEulerAngles = new Vector3(90f, 150f, 0f);
+			playersGun.transform.localEulerAngles = new Vector3(90f, 170f, 0f);
 		}
 		if (aiming == false) {
 			if (Input.GetKey("w")){
