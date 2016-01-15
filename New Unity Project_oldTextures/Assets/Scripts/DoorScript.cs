@@ -9,6 +9,7 @@ public class DoorScript : MonoBehaviour {
 	public CharacterManager cm;
 
 	string whereTo = "Out";
+	bool canPass = false;
 
 	void Start () {
 		//player = GameObject.Find("Player");
@@ -24,11 +25,12 @@ public class DoorScript : MonoBehaviour {
 		{}
 		else if(Input.GetKeyDown("return"))
 		{
-			if (whereTo == "Out") {
-				StartCoroutine(GoOut());
-			}
-			else if (whereTo == "In") {
-				StartCoroutine(GoIn());
+			if (canPass) {
+				if (whereTo == "Out") {
+					StartCoroutine (GoOut ());
+				} else if (whereTo == "In") {
+					StartCoroutine (GoIn ());
+				}
 			}
 		}
 	}
@@ -37,6 +39,7 @@ public class DoorScript : MonoBehaviour {
 		if (other.tag == "Player") 
 		{
 			GetComponentInChildren<Renderer> ().material.SetColor ("_OutlineColor", Color.white);
+			canPass = true;
 		}
 		
 	}
@@ -45,6 +48,7 @@ public class DoorScript : MonoBehaviour {
 		if (other.tag == "Player") 
 		{
 			GetComponentInChildren<Renderer> ().material.SetColor ("_OutlineColor", Color.black);
+			canPass = false;
 		}
 		
 	}
@@ -52,7 +56,7 @@ public class DoorScript : MonoBehaviour {
 	IEnumerator GoOut() {
 		cm.GoToIdle();
 		cm.enabled = false;
-		yield return new WaitForSeconds (1.0f);
+		yield return new WaitForSeconds (0.5f);
 		player.transform.position = new Vector3( spawnerOut.transform.position.x, player.transform.position.y, spawnerOut.transform.position.z);
 		cm.enabled = true;
 		whereTo = "In";
@@ -61,7 +65,7 @@ public class DoorScript : MonoBehaviour {
 	IEnumerator GoIn() {
 		cm.GoToIdle();
 		cm.enabled = false;
-		yield return new WaitForSeconds (1.0f);
+		yield return new WaitForSeconds (0.5f);
 		player.transform.position = new Vector3( spawnerIn.transform.position.x, player.transform.position.y, spawnerIn.transform.position.z);
 		cm.enabled = true;
 		whereTo = "Out";

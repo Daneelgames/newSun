@@ -9,9 +9,10 @@ public class Gates : MonoBehaviour {
 	DoorScript door;
 	Gates gates;
 	Text dialogue;
+	Animator animator;
 	bool canInteract = false;
 	bool canSkip = false;
-	Animator animator;
+	bool gatesOpen = false;
 
 	void Start ()
 	{
@@ -56,10 +57,13 @@ public class Gates : MonoBehaviour {
 		}
 		if (other.tag == "Projectile" || other.tag == "Gun")
 		{
-			GetComponent<AudioSource>().Play();
-			door.enabled = true;
-			animator.SetTrigger("Brake");
-			gates.enabled = false;
+			if (!gatesOpen) {
+				GetComponent<AudioSource> ().Play ();
+				door.enabled = true;
+				animator.SetTrigger ("Brake");
+				gates.enabled = false;
+				gatesOpen = true;
+			}
 		}
 	}
 	

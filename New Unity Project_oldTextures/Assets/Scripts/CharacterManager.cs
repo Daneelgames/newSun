@@ -58,15 +58,17 @@ public class CharacterManager : MonoBehaviour {
 			}
 		}
 		if (Input.GetKey ("right shift") && playersGun.activeInHierarchy) {
-			print (playersGun.transform.rotation.eulerAngles.z);
+			//print (playersGun.transform.rotation.eulerAngles.z);
+			print (canShoot);
 			animator.SetBool ("Walk", false);
 			animator.SetBool ("Back", false);
 			animator.SetBool ("Turn", false);
 			animator.SetBool ("Aiming", true);
 			aiming = true;
 			laserLine.SetActive(true);
-			if (Input.GetKeyDown("return") && canShoot == true)
+			if (Input.GetKey("return") && canShoot == true)
 			{
+				print ("return pressed");
 				StartCoroutine(Attack());
 			}
 			if (Input.GetKey("w")){
