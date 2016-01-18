@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class DoorScript : MonoBehaviour {
 
@@ -7,7 +8,9 @@ public class DoorScript : MonoBehaviour {
 	public Transform spawnerIn;
 	public Transform player;
 	public CharacterManager cm;
+	public string description;
 
+	Text dialogue;
 	string whereTo = "Out";
 	bool canPass = false;
 
@@ -16,6 +19,7 @@ public class DoorScript : MonoBehaviour {
 		//cm = player.GetComponent<CharacterManager> ();
 		
 		Renderer renderer = GetComponentInChildren<Renderer>();
+		dialogue = GameObject.Find("Dialogue").GetComponent<Text> ();
 		renderer.material.shader = Shader.Find ("Toon/Lit Outline");
 	}
 
@@ -38,6 +42,7 @@ public class DoorScript : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") 
 		{
+			dialogue.text = description;
 			GetComponentInChildren<Renderer> ().material.SetColor ("_OutlineColor", Color.white);
 			canPass = true;
 		}
@@ -47,6 +52,7 @@ public class DoorScript : MonoBehaviour {
 	void OnTriggerExit(Collider other){
 		if (other.tag == "Player") 
 		{
+			dialogue.text = "";
 			GetComponentInChildren<Renderer> ().material.SetColor ("_OutlineColor", Color.black);
 			canPass = false;
 		}
