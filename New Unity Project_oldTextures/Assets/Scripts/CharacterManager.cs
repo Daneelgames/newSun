@@ -59,7 +59,7 @@ public class CharacterManager : MonoBehaviour {
 		}
 		if (Input.GetKey ("right shift") && playersGun.activeInHierarchy) {
 			//print (playersGun.transform.rotation.eulerAngles.z);
-			print (canShoot);
+			//print (canShoot);
 			animator.SetBool ("Walk", false);
 			animator.SetBool ("Back", false);
 			animator.SetBool ("Turn", false);

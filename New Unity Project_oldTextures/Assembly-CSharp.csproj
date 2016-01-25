@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActiveObjects\Bullets.cs" />
+     <Compile Include="Assets\Scripts\ActiveObjects\CabinDoor.cs" />
      <Compile Include="Assets\Scripts\ActiveObjects\Gates.cs" />
      <Compile Include="Assets\Scripts\ActiveObjects\PickupGun.cs" />
      <Compile Include="Assets\Scripts\ActiveObjects\RedCar.cs" />
