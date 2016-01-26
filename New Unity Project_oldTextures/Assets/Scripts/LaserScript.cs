@@ -16,8 +16,6 @@ public class LaserScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//int solidMask = (1 << 9);
-		//solidMask = ~solidMask;
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, transform.forward, out hit, solidMask)) {
 			if (hit.collider) {
@@ -25,7 +23,7 @@ public class LaserScript : MonoBehaviour {
 				print (hit.collider.gameObject.name);
 			}
 		}
-		else 
+		else
 		{
 			lr.SetPosition(1, new Vector3(0,0,100));
 		}
