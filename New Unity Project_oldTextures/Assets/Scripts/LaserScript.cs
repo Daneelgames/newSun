@@ -17,11 +17,12 @@ public class LaserScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		RaycastHit hit;
-		if (Physics.Raycast (transform.position, transform.forward, out hit, solidMask)) {
+		if (Physics.Raycast (transform.position, transform.forward, out hit, 100, solidMask)) {
 			if (hit.collider) {
 				lr.SetPosition (1, new Vector3 (0, 0, hit.distance));
-				print (hit.collider.gameObject.name);
-			}
+				//print (hit.collider.gameObject.name);
+                print(hit.collider.gameObject.layer);
+            }
 		}
 		else
 		{
