@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour {
 	public float forceValue;
 	public int bullets = 0;
 	public GameObject shot;
-	public GameObject projectile;
+    public LaserScript laserScript;
 	public Transform shotHolder;
 	public GameObject laserLine;
 	public GameObject playersGun;
@@ -68,7 +68,7 @@ public class CharacterManager : MonoBehaviour {
 			laserLine.SetActive(true);
 			if (Input.GetKey("return") && canShoot == true)
 			{
-				print ("return pressed");
+				//print ("return pressed");
 				StartCoroutine(Attack());
 			}
 			if (Input.GetKey("w")){
@@ -116,10 +116,10 @@ public class CharacterManager : MonoBehaviour {
 	{
 		if (bullets > 0) {
 			Instantiate(shot, shotHolder.position, shotHolder.rotation );
-			Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+2, gameObject.transform.position.z), gameObject.transform.rotation );
 			gun.GetComponent<AudioSource>().pitch = Random.Range (0.6f, 1.0f);
 			gun.Play();
-			animator.SetTrigger ("Shoot");
+            laserScript.Shot();
+            animator.SetTrigger ("Shoot");
 			bullets--;
 			canShoot = false;
 			yield return new WaitForSeconds (1.0f);
